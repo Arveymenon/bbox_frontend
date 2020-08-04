@@ -1,0 +1,205 @@
+// Header Styles
+ion-title{
+    text-align: left;
+}
+$break-small: 411px;
+
+//Card Styles
+.feed-card{
+    --background: white !important;
+    margin: 20% auto;
+    max-width: 600px;
+    padding: 0;
+    box-shadow: none !important;
+    border-radius: 0px !important;
+    @media screen and (min-width: $break-small) {
+        margin: 30% auto; 
+    }
+    
+}
+
+.logo-container{
+    max-width: 40px !important;
+}
+
+.feed-header img{
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: inline;
+}
+
+.feed-image, .feed-video {
+    height: 300px;
+}
+
+.feed-card .business-name{
+    margin: 0px 10px 0 10px;
+    font-size: 14px;
+    color: #262626;
+    font-weight: 600;
+    display: inline;
+    position: relative;
+    bottom: 10px;
+}
+
+// .feed-card .open-options{
+//     margin: 0;  
+//     position: relative;
+//     left:20px;
+//     font-size: 25px;
+//     color: #262626;
+//     font-weight: bold;
+//     text-align: right
+// }
+
+.feed-card .open-options{
+    margin: 0;
+    display: inline;
+    font-size: 25px;
+    color: #262626;
+    font-weight: bold;
+    float: right;
+    text-align: right;
+    position: relative;
+    bottom: 10px;
+    right: 10px;
+
+}
+
+ion-card-header{
+    padding-bottom: 10px;
+}
+
+ion-card-content{
+    padding-top:0;
+}
+
+.business-name{
+    margin: 0;
+}
+
+.card-photo{
+    border-radius: 10px;
+    width: 100%;
+}
+
+.post-text{
+    padding: 0px;
+    font-size: 13px;
+    color: #1A1A1A;
+    margin-top: 10px
+}
+
+.card-options ion-button{
+    --padding-start: 5px;
+    --padding-end: 5px;
+}
+
+.card-options{
+    overflow: hidden;
+    position: relative;
+    right: 10px;
+}
+
+.card-options span{
+    float: right;
+    color: #005DDD;
+    padding-top: 10px;
+}
+
+//Comment Styles
+.top-comment, .comment{
+    display: flex;
+    margin-top: 5px;
+}
+
+.avatar-container{
+    min-width: 30px;
+}
+
+.avatar-container img{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.comment-text{
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.comment-box{
+    display: flex;
+    margin-top:10px;
+}
+
+.comment-input{
+    height: 30px;
+    width: 100%;
+    border: 2px solid #E2E2E2;
+    margin: 0 10px 0 5px;
+    --border-width: 0 0 0 0;
+    border-radius: 8px
+}
+
+.comment-input ion-input{
+    --padding-top:3px;
+}
+
+.buttons-container{
+    overflow: hidden;
+    position: relative;
+    bottom: 37px;
+}
+
+.buttons-container ion-button{
+    float: right;
+    position: relative;
+    z-index: 3;
+}
+
+.buttons-container ion-button ion-icon{
+    font-size: 20px;
+}
+
+.hide{
+    display: none !important;
+}
+
+//Skeleton Styles
+
+.skeleton-list{
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.skeleton-avatar{
+    height: 30px;
+    width: 30px;
+}
+
+.feed-skeleton-img{
+    padding:0px 16px 0px 16px;
+    margin: 0 15px; 
+    height:200px; 
+    border-radius:10px;
+}
+
+.feed-skeleton-text{
+    padding:10px 16px 0px 16px; 
+    margin: 0 15px; 
+    height:25px
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 20%;
+    -ms-transform: translateY(-20%);
+    transform: translateY(-20%);
+  }
+
+  .blackbg{
+      --background: black !important;
+  }

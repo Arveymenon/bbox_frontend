@@ -1,0 +1,307 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      {{'Home'|translate}}
+    </ion-title>
+    <ion-buttons slot="end" size-xs="small">
+      <!-- <ion-button (click)="createPersonal()" class="no-padding">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button> -->
+      <!-- <ion-button [routerLink]="[ '/notifications']">
+        <ion-icon slot="icon-only" name="notifications"></ion-icon>
+      </ion-button> -->
+      <ion-button [routerLink]="['/contact-list']">
+        <ion-icon slot="icon-only" name="person"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
+
+    <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="createGroup()">
+          <ion-icon name="md-create"></ion-icon>
+        </ion-fab-button>
+    </ion-fab> -->
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" #fab>
+      <ion-fab-button id="fab-btn">
+        <ion-icon name="md-create"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list id="fab-list" side="top">
+        <ion-fab-button id="fab-btn1" (click)="createPersonal()" title="{{ 'Personal Chat' | translate }}">
+          <ion-icon name="person"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button id="fab-btn2" (click)="createGroup(1)" title="{{ 'Group' | translate }}">
+          <ion-icon name="people"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button *ngIf="subscribers" id="fab-btn3" (click)="createGroup(2)" title="{{ 'Subscriber List' | translate }}">
+          <ion-icon name="people"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+
+
+ <!-- Skeleton -->
+ <div *ngIf="loadingGroups">
+  <ion-list>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</div>
+<!-- Skeleton End -->
+<ion-segment (ionChange)="segmentChanged($event)" color="primary" value="{{segment}}" *ngIf="loadingGroups == false && subscribers == true">
+  <ion-segment-button value="personal">
+    <ion-label>{{ 'Chatrooms' | translate }}</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="group">
+    <ion-label>{{ 'Subscribers' | translate }}</ion-label>
+  </ion-segment-button>
+</ion-segment>
+
+    <!-- <ion-list class="ion-no-padding" lines="none" routerLink='groupchat/groupchatadmin'> -->
+      <ion-list class="ion-no-padding" lines="none" *ngIf="loadingGroups == false && segment == 'group'">
+      
+      <!-- <ion-list-header>
+        <ion-label>{{ 'Groups' | translate }}</ion-label>
+      </ion-list-header> -->
+      <p class="ion-text-center" *ngIf="!groupService.groups && loadingGroups == false">{{ 'No Subscriber Lists Yet' | translate}}</p>
+      <div id="main" *ngIf="!loadingGroups">
+      <div *ngFor="let gp of groupService.groups" >
+      <ion-item class="chat-item" *ngIf="gp.members.length > 2 && gp.admin == true && gp.subscriber == true" (click)="onClickDetails(gp._id, gp.subscriber)">       
+          <ion-label >
+            <ion-grid>
+              <ion-row (press)="deleteAlert(gp._id)">
+                <ion-col size-sm="1" size-xs="2" class="left">
+                  <!-- <div class="">
+                      <img class="group-icon" src="assets/images/user.png">
+                      <img class="group-icon" src="assets/images/user.png">
+                  </div>
+                  <div class="">
+                      <img class="group-icon" src="assets/images/user.png">
+                      <img class="group-icon" src="assets/images/user.png">
+                  </div> -->
+                  <img class="group-icon" *ngIf="gp.avatar" [src]="'http://198.12.92.202/public/uploads/' + gp.avatar">
+                  <img class="group-icon" *ngIf="!gp.avatar && gp.members.length > 2" src="assets/images/user.png">
+                  <img class="group-icon" *ngIf="!gp.avatar && gp.members.length <= 2" src="assets/images/user.png">
+                </ion-col>
+                <ion-col size-sm="10" size-xs="8" class="middle">
+                    <h2 class="group-name"><b>{{gp.name}}</b></h2>
+                    <p class="group-message"><span>{{ getLastChat(gp.chats, 'Group') }}</span></p>
+                </ion-col>
+                <ion-col size-sm="1" size-xs="2">
+                  <ion-row class="right">
+                    <ion-col class="message-time-container ion-no-padding">
+                      <span class="message-time" *ngFor="let ls of gp.chats; let i = index" > {{ ((i + 1) == (gp.chats.length)) ? (ls.chattime|date: 'H:mm') : '' }}</span>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col no-padding class="message-badge-container">
+                      <ion-badge *ngIf="getCount(gp._id) > 0" class="message-badge">{{ getCount(gp._id) }}</ion-badge>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-label>
+        </ion-item>
+        </div>
+        </div>
+
+            <br><br>
+
+      
+    </ion-list>
+
+    <ion-list class="ion-no-padding" lines="none" *ngIf="loadingGroups == false && segment != 'group'">
+      
+      <!-- <ion-list-header>
+        <ion-label>{{ 'Personal Chats' | translate }}</ion-label>
+      </ion-list-header> -->
+      <p class="ion-text-center" *ngIf="!groupService.groups && loadingGroups == false">No Personal Chats Yet</p>
+      <div id="main" *ngIf="!loadingGroups">
+      <div *ngFor="let gp of groupService.groups" >
+      <ion-item class="chat-item" *ngIf="gp.members.length == 2 || gp.admin != true" (click)="onClickDetails(gp._id, gp.subscriber)">       
+          <ion-label >
+            <ion-grid>
+              <ion-row (press)="gp.members.length == 2 ? deleteAlert(gp._id) : removeAlert(gp._id)">
+                <ion-col size-sm="1" size-xs="2" class="left">
+                  <!-- <div class="">
+                      <img class="group-icon" src="assets/images/user.png">
+                      <img class="group-icon" src="assets/images/user.png">
+                  </div>
+                  <div class="">
+                      <img class="group-icon" src="assets/images/user.png">
+                      <img class="group-icon" src="assets/images/user.png">
+                  </div> -->
+                  <img class="group-icon" *ngIf="gp.avatar" [src]="'http://198.12.92.202/public/uploads/' + gp.avatar">
+                  <img class="group-icon" *ngIf="!gp.avatar && gp.members.length > 2 && !gp.subscriber" src="assets/images/group.png">
+                  <img class="group-icon" *ngIf="!gp.avatar && gp.members.length > 2 && gp.subscriber" src="assets/images/user.png">
+                  <img class="group-icon" *ngIf="!gp.avatar && gp.members.length <= 2" src="assets/images/user.png">
+                </ion-col>
+                <ion-col size-sm="10" size-xs="9" class="middle">
+                    <h2 class="group-name"><b>{{gp.name}}</b></h2>
+                    <p class="group-message"><span>{{ getLastChat(gp.chats, 'Personal Chat') }}</span></p>
+                </ion-col>
+                <ion-col size-sm="1" size-xs="1">
+                  <ion-row class="right">
+                    <ion-col class="message-time-container ion-no-padding">
+                      <span class="message-time" *ngFor="let ls of gp.chats; let i = index" > {{ ((i + 1) == (gp.chats.length)) ? (ls.chattime|date: 'H:mm') : '' }}</span>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col no-padding class="message-badge-container">
+                      <ion-badge *ngIf="getCount(gp._id) > 0" class="message-badge">{{ getCount(gp._id) }}</ion-badge>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-label>
+        </ion-item>
+        </div>
+        </div>
+
+            <br><br><br><br>
+
+      
+    </ion-list>
+
+
+  </ion-content>

@@ -1,0 +1,275 @@
+//Ion Header Styles
+ion-title{
+    text-align: left;
+}
+
+//Main Styles
+.main{
+    margin:20px;
+}
+
+// Header Styles
+.header{
+    color: #1A1A1A;
+    font-weight: bold;
+    margin-bottom:0px;
+}
+
+.header.sub{
+    color: #005DDD;
+    margin-top:0;
+    margin-bottom: 20px;
+}
+
+//Send Message to All Styles
+
+.all-message-container{
+    width: 50px;
+    margin-top: 20px;
+}
+
+
+.images-container{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    padding-left:3px;
+}
+
+.overlay{
+    background: #69A8FF;
+}
+
+.overlay .small-image{
+    opacity: 0.5;
+}
+
+.all-text{
+    margin-top:35px;
+    width:50px;
+    color: #1A1A1A;
+    text-align: center;
+    font-weight: 600;
+    font-size: 12px;
+    position: relative;
+    bottom: 30px;
+    margin-bottom: 0;
+}
+
+.all-text.blue{
+    color: #005DDD;
+}
+
+.first-row{
+    display: flex;
+    padding-left: 3px;
+    padding-top: 4px 
+}
+
+.second-row{
+    display: flex;
+    padding-left: 3px;
+}
+
+.images-container .small-image{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin: 3px 2px;
+}
+
+.checkmark{
+    font-size: 30px;
+    position: relative;
+    bottom: 40px;
+    left: 10px;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+//Send Message to Individuals Style
+
+.all-images-row{
+    display: flex;
+}
+
+.individual-user-container{
+    width: 50px;
+    height: 50px;
+    margin: 0 5px;
+}
+
+.individual-image-container{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: #69A8FF;
+    margin: 0 auto;
+}
+
+.large-image{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.individual-name{
+    margin-top:2px;
+    color: #1A1A1A;
+    text-align: center;
+    font-weight: 600;
+    font-size: 12px;
+    position: relative;
+    bottom: 30px;
+    margin-bottom: 0;
+}
+
+.individual-checkmark{
+    font-size: 25px;
+    position: relative;
+    bottom: 33px;
+    left: 12px;
+    visibility: hidden;
+}
+
+.individual-overlay .large-image{
+    opacity: 0.5 !important;
+}
+
+.individual-overlay .individual-name{
+    color: #005DDD !important;
+}
+
+.individual-overlay .individual-checkmark{
+    visibility: visible;
+}
+
+
+//Attachment styles
+
+// .hide{
+//     display: none !important;
+// }
+
+// .position-fix{
+//     position: relative;
+//     bottom: 105px;
+//     z-index: 1000;
+// }
+
+// .attachment-container{
+//     display: flex;
+//     position: relative;
+//     padding: 0 15px;
+// }
+
+// .attachment-snapshot{
+//     width: 15%;
+//     min-width: 60px;
+// }
+
+// .attachment-snapshot img{
+//     height: 60px;
+//     width: 60px;
+//     border-radius: 10px;
+// }
+
+// .attachment-name{
+//     width: 70%;
+//     height: 60px;
+//     white-space: nowrap;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+// }
+
+// .attachment-name p{
+//     margin: 0;
+//     color: #005DDD;
+//     font-size: 18px;
+//     padding: 18px;
+//     display: inline-block;
+// }
+
+// .attachment-delete{
+//     width: 15%;
+//     overflow: hidden;
+// }
+
+// .attachment-delete ion-button{
+//     padding: 10px 0;
+//     float: right;
+// }
+
+//Text area Styles
+
+
+
+// .text-box-container{
+//     margin-top: 50px;
+//     position: absolute;
+//     bottom: 0;
+//     width: 91%;
+//     height: 300px;
+// }
+
+// .rounded{
+//     border: 2px solid #E2E2E2;
+//     --border-width: 0 0 0 0;
+//     border-radius: 8px
+// }
+
+// ion-textarea{
+//     height: 275px;
+//     padding-bottom: 40px;
+// }
+
+// .buttons-container{
+//     text-align: right;
+// }
+
+// .buttons-container.normal{
+//     position: relative;
+//     top: 55px;
+//     z-index: 1000;
+// }
+
+// .buttons-container ion-button{
+//     --padding-start:5px;
+//     --padding-end:5px;
+// }
+
+// .buttons-container ion-icon{
+//     padding: 0;
+//     font-size: 18px;
+// }
+
+// @media only screen and (max-height: 750px) {
+//     .text-box-container{
+//         height: 350px;
+//     }
+//     ion-textarea {
+//       height: 325px;
+//     }
+// }
+
+
+// @media only screen and (max-height: 700px) {
+//     .text-box-container{
+//         height: 300px;
+//     }
+//     ion-textarea {
+//       height: 275px;
+//     }
+// }
+
+// @media only screen and (max-height: 600px) {
+//     .text-box-container{
+//         height: 225px;
+//     }
+//     ion-textarea {
+//       height: 180px;
+//     }
+// }

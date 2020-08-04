@@ -1,0 +1,10 @@
+.login-container{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: -moz-max-content;
+    width: max-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    position: absolute;
+}

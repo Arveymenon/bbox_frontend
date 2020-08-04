@@ -1,0 +1,172 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home/tabs/tab2">
+        <ion-icon class="back-button" slot="icon-only" name="md-arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title routerLink="groupdetails">
+      {{'Feeds'|translate}}
+    </ion-title>
+    <ion-buttons slot="end" size-xs="small">
+      <!-- <ion-button>
+        <ion-icon slot="icon-only" name="md-search"></ion-icon>
+      </ion-button> -->
+      <!-- <ion-button>
+        <ion-icon slot="icon-only" name="md-notifications"></ion-icon>
+      </ion-button> -->
+      <ion-button>
+        <ion-icon slot="icon-only" name="md-create"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="main" *ngIf="userArray.length != 0">
+
+    <p class="header" *ngIf="feed_id == -1">{{'Feed will be sent to'|translate}}</p>
+
+    <div class="all-message-container" (click)="selectAll($event)" *ngIf="feed_id == -1">
+      <div class="images-container">
+        <div class="first-row">
+          <img [src]="userService.setAvatar(userArray[0] ? userArray[0].avatar: '')"
+            onError="this.src='assets/images/user.png';" class="small-image">
+          <img [src]="userService.setAvatar(userArray[1] ? userArray[1].avatar: '')"
+            onError="this.src='assets/images/user.png';" class="small-image">
+        </div>
+        <div class="second-row">
+          <img [src]="userService.setAvatar(userArray[2] ? userArray[2].avatar: '')"
+            onError="this.src='assets/images/user.png';" class="small-image">
+          <img [src]="userService.setAvatar(userArray[3] ? userArray[3].avatar: '')"
+            onError="this.src='assets/images/user.png';" class="small-image">
+        </div>
+      </div>
+      <ion-icon slot="icon-only" name="md-checkmark" color="light" class="checkmark hidden"></ion-icon>
+      <p class="all-text">{{'All'|translate}}</p>
+    </div>
+
+    <p class="header sub" *ngIf="feed_id == -1">{{'Select Groups'|translate}}</p>
+
+
+
+  <div>
+    <div class="all-images-row" *ngIf="feed_id == -1">
+      <div *ngFor="let user of userArray; index as pos" class="individual-user-container" id="container-{{ pos+1 }}">
+        <div class="individual-image-container" (click)="selectIndividual($event, pos)">
+          <img class="large-image" id="image-{{ pos+1 }}" *ngIf="user.avatar"
+            [src]="userService.setAvatar(user.avatar)">
+          <img class="large-image" id="image-{{ pos+1 }}" *ngIf="!user.avatar" src="assets/images/user.png">
+        </div>
+        <ion-icon slot="icon-only" name="md-checkmark" color="light" class="individual-checkmark" id="{{ pos+1 }}"
+          (click)="selectIndividual($event, pos)"></ion-icon>
+        <p class="individual-name">{{ user.name }}</p>
+      </div>
+    </div>
+  </div>
+    
+    <div *ngIf="feed_id != -1">
+      <video width="320" height="240" controls *ngIf="feedEdit.data.fileType == 'video'" muted [muted]="true">
+        <source [src]="'http://198.12.92.202/public/uploads/'+ feedEdit.data.attachment" type="video/mp4">
+        <source [src]="'http://198.12.92.202/public/uploads/'+ feedEdit.data.attachment" type="video/ogg">
+        Your browser does not support the video tag.
+      </video>
+      <img  [src]="'http://198.12.92.202/public/uploads/'+ feedEdit.data.attachment" width="320" height="240" *ngIf="feedEdit.data.fileType == 'image'">
+      <!-- <video [src]="feedEdit.data.attachment" width="200" height="200" *ngIf="feedEdit.data.fileType == video"> -->
+    </div>
+
+
+
+
+    <!-- Text area -->
+    <div class="type-message">
+      <!-- Text Message Area -->
+      <div class="type-message-container">
+
+        <!-- DEMO ITEM -->
+        <!-- <ion-item class="preview" text-wrap>
+          <ion-thumbnail  slot="start">
+            <ion-img src="assets/images/user.png"></ion-img>
+          </ion-thumbnail>
+          <ion-label>
+            2141251521512.jpg
+          </ion-label>
+          <ion-button *ngIf="uploading == false" slot="end" fill="clear" (click)="deleteFile(img, pos)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
+          <ion-spinner name="crescent" color="primary"></ion-spinner>
+        </ion-item>
+        <ion-progress-bar value="100" buffer="50"></ion-progress-bar> -->
+
+        <ion-item class="preview" *ngFor="let img of images; index as pos" text-wrap>
+          <ion-thumbnail *ngIf="getExt(img) != 'video'" slot="start">
+            <ion-img [src]="img.path"></ion-img>
+          </ion-thumbnail>
+          <ion-thumbnail *ngIf="getExt(img) == 'video'" slot="start">
+            <video [src]="img.path" height="50" width="70" muted [muted]="true" preload="auto" playsinline autoplay loop></video>
+          </ion-thumbnail>
+          <ion-label>
+            {{ img.displayName }}
+          </ion-label>
+          <ion-button *ngIf="uploading == false" slot="end" fill="clear" (click)="deleteFile(img, pos)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
+          <ion-spinner *ngIf="uploading == true" name="crescent" color="primary"></ion-spinner>
+        </ion-item>
+        <ion-item class="preview" *ngFor="let doc of docs; index as pos" text-wrap>
+          <ion-chip color="primary">
+            <ion-icon name="attach" color="primary"></ion-icon>
+          </ion-chip>
+          <ion-label>
+            {{ doc.name }}
+          </ion-label>  
+          <ion-button *ngIf="uploading == false" slot="end" fill="clear" (click)="deleteFile(doc, pos)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
+          <ion-spinner *ngIf="uploading == true" name="crescent" color="primary"></ion-spinner>
+        </ion-item>
+        <ion-progress-bar *ngIf="uploading == true" value="{{ upload_value }}" buffer="{{ buffer_value }}"></ion-progress-bar>
+        <form [formGroup]="feedForm" (ngSubmit)="onSubmit()">
+          
+          <div class="chatbox-wrapper">
+            <ion-item class="rounded" lines="none">
+                <ion-textarea formControlName="text" rows="3" placeholder="{{'Enter Message'|translate}}..."></ion-textarea>
+            </ion-item>
+          </div>
+        
+          <div class="buttons-container">
+            <ion-button fill="clear" (click)="showModal()" *ngIf="!feed_id || feed_id  == -1">
+              <ion-icon slot="icon-only" name="md-eye" color="primary"></ion-icon>
+              </ion-button>
+              
+            <input type="file" (change)="getFileFromBrowser($event, 'doc')" id="file" accept="" style="display: none">
+            <ion-button fill="clear" (click)="selectAFile()" *ngIf="!feed_id || feed_id  == -1">
+              <ion-icon slot="icon-only" name="md-attach" color="primary"></ion-icon>
+            </ion-button>
+            
+            <input type="file" (change)="getFileFromBrowser($event, 'video')" id="video" accept="video/mp4,video/x-m4v,video/*" style="display: none">
+            <ion-button fill="clear" (click)="selectVideoFromGallery()" *ngIf="!feed_id || feed_id  == -1">
+              <ion-icon slot="icon-only" name="md-videocam" color="primary"></ion-icon>
+            </ion-button>
+            
+            <input type="file" (change)="getFileFromBrowser($event, 'image')" id="image" accept="image/*" style="display: none">
+            <ion-button fill="clear" (click)="selectImage()" *ngIf="!feed_id || feed_id  == -1">
+              <ion-icon slot="icon-only" name="md-camera" color="primary"></ion-icon>
+            </ion-button>
+
+            <ion-button fill="clear" (click)="onSubmit()">
+              <ion-icon slot="icon-only" name="md-send" color="primary"></ion-icon>
+            </ion-button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <div *ngIf="userArray.length == 0 && loaded == true">
+    <p class="ion-text-center">Kindly Create a Subscriber List to Create Feeds</p>
+  </div>
+
+
+</ion-content>

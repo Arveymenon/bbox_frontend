@@ -1,0 +1,66 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button routerLink="/home/tabs/tab1/">
+              <ion-icon class="back-button" slot="icon-only" name="md-arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+      <h1 class="ion-title">{{'Invite Member'|translate}}</h1>
+      <ion-buttons slot="end" size-xs="small">
+        <ion-button (click)="scanCode()">
+            <ion-icon slot="icon-only" name="md-qr-scanner"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+    <div class="main">
+        
+      <div class="grid">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="1" (click)="scanCode()">
+              <!-- <ion-button fill="clear">
+                <ion-icon slot="icon-only" name="md-qr-scanner"></ion-icon>
+              </ion-button> -->
+            </ion-col>
+            <ion-col size="10" size-xs="11" size-sm="11" class="ion-text-center ion-justify-content-center">
+              <ngx-qrcode [qrc-element-type]="'img'" qrc-class="qr-code" [qrc-value]="sharing_link"></ngx-qrcode>
+              <div class="social-container">
+                  <img src="assets/images/line.png" class="social-icon db-b" (click)="inviteMemberByLine()">
+                  <img src="assets/images/facebook.png" class="social-icon" (click)="inviteMemberByFacebook()">
+              </div>
+            </ion-col>
+            <!-- <ion-col size="3">
+            </ion-col> -->
+          </ion-row>
+        </ion-grid>
+      </div>
+
+        <div class="invite-member-form">
+            <p class="header">{{'Invite by Email ID'|translate}}</p>
+
+            <!-- <ion-item class="rounded" lines="none"> -->
+            <ion-button expand="block" (click)="inviteMemberByEmail()">{{ 'Invite' | translate }}</ion-button>
+            <!-- </ion-item> -->
+
+            <p *ngIf="this.show_on_desktop" class="header ion-text-center">{{'OR'|translate}}</p>
+
+            <p *ngIf="this.show_on_desktop" class="header">{{'Invite by Text'|translate}}</p>
+
+            <!-- <ion-item class="rounded" lines="none"> -->
+            <ion-button *ngIf="this.show_on_desktop" expand="block" (click)="inviteMemberByPhone()">{{ 'Invite' | translate }}</ion-button>
+            <!-- </ion-item> -->
+
+            <p *ngIf="this.show_on_desktop" class="header ion-text-center">{{'OR'|translate}}</p>
+
+            <p *ngIf="this.show_on_desktop" class="header">{{'Invite via Other Apps'|translate}}</p>
+
+            <!-- <ion-item class="rounded" lines="none"> -->
+            <ion-button *ngIf="this.show_on_desktop" expand="block" (click)="inviteMemberByOtherApps()">{{ 'Invite' | translate }}</ion-button>
+            <!-- </ion-item> -->
+        </div>
+    </div>
+
+</ion-content>

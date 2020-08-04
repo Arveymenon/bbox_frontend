@@ -1,0 +1,17 @@
+app-view-image {
+    --background: black !important;
+}
+
+.image-wrapper {
+  display: flex;
+  align-items: center; /* horizontal */
+  justify-content: center; /* vertical */
+}
+
+.image-preview {
+    max-height: 100%;
+}
+
+.bg-black{
+  --background: black !important;
+}

@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      {{'Profile'|translate}}
+    </ion-title>
+    <ion-buttons slot="end" size="small">
+      
+        <ion-button *ngIf="lang" size="small" fill="clear" class="lang-switcher" (click)="toggleLang()">{{ lang }}</ion-button>
+        <!-- <ion-button (click)="chat()" class="no-padding">
+          <ion-icon slot="icon-only" name="search"></ion-icon>
+        </ion-button> -->
+        <!-- routerLink="/group-chat-admin" -->
+        <!-- <ion-button [routerLink]="[ '/notifications']">
+          <ion-icon slot="icon-only" name="notifications"></ion-icon>
+        </ion-button> -->
+        <ion-button (click)="logout()">
+          <ion-icon slot="icon-only" name="ios-log-out"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="user-container">
+      <img class="user-photo" [src]="userService.setAvatar(profile_pic)" onError="this.src='assets/images/user.png';">
+      <!-- 'https://graph.facebook.com/10219749290953972/picture' -->
+      <p *ngIf="edit_name == false" class="user-title">{{ name }}
+        <ion-icon ios="ios-create" md="md-create" (click)="enableEditName()"></ion-icon>
+      </p>
+      <p>{{ mobile }}</p>
+
+      <ion-input *ngIf="edit_name == true" [formControl]="user_name" value="{{ name }}" placeholder="{{ name }}" id='inputElement' #inputElement></ion-input>
+      <div text-center *ngIf="edit_name == true">
+        <ion-badge color="primary" (click)="updateName()" text-center>{{ 'update' | translate }}</ion-badge>
+      </div>
+      <input type="file" (change)="getFileFromBrowser($event, 'image')" id="image" accept="image/*" style="display: none">
+      <img class=settings-icon (click)="selectImage()" src="assets/images/settings.png">
+    </div>
+
+    <ion-grid>
+      <ion-row>
+
+        <ion-col>
+          <ion-card class="home-card one" (click)="inviteMember()">
+            <div class="content">
+              <img src='assets/images/add-contact.png'>
+              <ion-card-title>{{'Add Contact' | translate}}</ion-card-title>
+            </div>
+          </ion-card>
+        </ion-col>
+
+        <!-- <ion-col>
+          <ion-card class="home-card two" (click)="joinGroup()">
+            <div class="content">
+              <img src='assets/images/group.png'>
+              <ion-card-title>{{'Create / Join Group'|translate}}</ion-card-title>
+            </div>
+          </ion-card>
+        </ion-col> -->
+      </ion-row>
+      <ion-list>
+        <ion-item>
+          <ion-label>{{'Enable Subscriber List' | translate}}</ion-label>
+          <ion-toggle [(ngModel)]="subscribers" (click)="valueChanged($event)"></ion-toggle>
+        </ion-item>
+        <ion-item (click)="goToBlockList()">
+          <ion-label>{{'View Blocked Users' | translate}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-grid>
+</ion-content>

@@ -1,0 +1,117 @@
+// Header Styles
+ion-title{
+    text-align: left;
+}
+  
+//Messaging Styles
+
+.chat-item{
+    border-bottom: 1px solid #E2E2E2;
+}
+
+.unread{
+    border:none;
+}
+
+.right{
+    margin-left:-10px;
+}
+
+.group-name{
+    color: #4B4A5E;
+    font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.group-message{
+    color: #4B4A5E;
+    font-weight: 400;
+}
+
+.message-time-container{
+    text-align: right;
+}
+
+.message-time{
+    color: #005DDD;
+    font-size: 14px;
+}
+
+.message-badge-container{
+    margin-top: 10px;
+    text-align: right;
+}
+
+.message-badge{
+    border-radius: 50%;
+    font-size: 12px;
+    min-width: 20px;
+    background: #CE0000;
+}
+
+// .image-container{
+//     max-width: 60px !important;
+// }
+
+// .group-icon-container{
+//     margin:1px;
+// }
+
+.group-icon{
+    margin: 1px;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+}
+
+//Skeleton
+
+// .skeleton-list{
+//     margin: 0 auto;
+//     max-width: 600px;
+// }
+
+// .skeleton-avatar{
+//     height: 30px;
+//     width: 30px;
+// }
+
+// .feed-skeleton-img{
+//     padding:0px 16px 0px 16px;
+//     margin: 0 15px; 
+//     height:200px; 
+//     border-radius:10px;
+// }
+
+// .feed-skeleton-text{
+//     padding:10px 16px 0px 16px; 
+//     margin: 0 15px; 
+//     height:25px
+// }
+
+ion-fab-button[title] {
+    position: relative;
+}
+
+ion-fab-button[title]::after {
+position: absolute;
+content: attr(title);
+z-index: 1;
+right: 55px;
+bottom: 4px;
+background-color: var(--ion-color-primary);
+padding: 9px;
+border-radius: 15px;
+color: white;
+box-shadow: 0 3px 5px -1px rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12);
+}
+
+ion-list-header ion-label {
+    text-transform: uppercase !important;
+    font-family: 'avenir', sans-serif !important;
+}
+
+
+

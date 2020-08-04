@@ -1,0 +1,33 @@
+<ion-content>
+  <ion-button size="small" fill="clear" class="lang-switcher" (click)="toggleLang()">{{ lang }}</ion-button>
+  <div class="login-container">
+    <img class="logo" src="assets/images/logo.png">
+    <form [formGroup]="credentialsForm" (ngSubmit)="onSubmit()">
+
+      <div class="login-form">
+        <ion-item class="rounded">
+          <ion-input type="text" placeholder="{{'username' | translate}}" formControlName="email"></ion-input>
+        </ion-item>
+
+        <ion-item class="rounded">
+          <ion-input type="password" placeholder="{{'password' | translate}}" formControlName="password"></ion-input>
+        </ion-item>
+
+        <div class="login-button">
+          <ion-button expand="full" shape="round" type="submit">{{ 'Log In' | translate }}</ion-button>
+        </div>
+        <br>
+        <div>
+          <!-- <img src="assets/images/google.png" width="45" height="45" (click)="google()">
+          &nbsp;&nbsp; -->
+          <img src="assets/images/Facebook1.png" width="45" height="45" (click)="facebook()">
+        </div>
+
+        <p class="login-text" routerLink="/register">{{ 'Don’t have an account?' | translate}}
+          <br><b>{{ 'Sign up' | translate}}</b></p>
+      </div>
+    </form>
+
+
+  </div>
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-content>
+  <div class="login-container">
+      <img class="logo" src="assets/images/logo.png">
+      <form [formGroup]="credentialsForm" (ngSubmit)="onSubmit()">
+
+      <div class="login-form">
+          <ion-item class="rounded">
+            <ion-input type="text" placeholder="{{'Full Name'|translate}}" formControlName="name" [(ngModel)]="name" required ></ion-input>
+          </ion-item>
+<!--  <ion-input type="hidden"  formControlName="user_id" value="{{ name }}"></ion-input> -->
+    
+          <ion-item class="rounded">
+            <ion-input type="email" placeholder="{{'Email ID'|translate}}" formControlName="email" required ></ion-input>
+          </ion-item>
+          
+          <div class="login-button">
+              <ion-button expand="block" shape="round" type="submit" required >{{'Sign up'|translate}}</ion-button>
+          </div>
+          <br>
+        <div>
+          <!-- <img src="assets/images/google.png" width="45" height="45" (click)="google()">
+          &nbsp;&nbsp; -->
+          <!-- <img src="assets/images/Facebook1.png" width="45" height="45" (click)="facebook()"> -->
+        </div>
+      </div>
+    </form>
+
+  </div>
+</ion-content>

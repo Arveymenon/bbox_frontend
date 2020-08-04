@@ -1,0 +1,40 @@
+.login-container{
+    margin-top: 50px;
+    text-align: center;
+}
+
+.logo{
+    height: 125px;
+}
+
+.login-form{
+    margin-top: 30px;
+}
+
+.login-form ion-item{
+    margin: 30px auto 0 auto;
+    max-width: 300px;
+}
+
+.rounded{
+    border: 2px solid #E2E2E2;
+    margin: 0 50px 0 50px;
+    --border-width: 0 0 0 0;
+    border-radius: 8px
+}
+
+.login-button{
+    text-align: center;
+    margin: 75px auto 0 auto;
+    max-width: 150px;
+    --box-shadow: none;
+}
+
+.login-text{
+    margin-top: 75px;
+    text-transform: uppercase;
+    color: #005DDD;
+    letter-spacing: 3px;
+    font-weight: 300;
+}
+

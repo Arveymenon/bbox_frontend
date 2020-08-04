@@ -1,0 +1,225 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      {{'Feeds'|translate}}
+    </ion-title>
+    <ion-buttons slot="end" size-xs="small">
+      <!-- <ion-button routerLink="/receive-incoming-call" class="no-padding">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button> -->
+      <!-- <ion-button>  -->
+        <ion-button routerLink="/create-feed">
+          <ion-icon slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content fullscreen>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..." pullMin="100" pullMax="200">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <!-- Skeleton -->
+  <div *ngIf="loadingFeeds">
+    <ion-list class="skeleton-list" lines="none">
+      <div>
+        <ion-item>
+          <ion-avatar class="skeleton-avatar" slot="start">
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-avatar>
+          <ion-label>
+            <h3>
+              <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+            </h3>
+          </ion-label>
+        </ion-item>
+
+        <p class="feed-skeleton-img"><ion-skeleton-text animated></ion-skeleton-text></p>
+        <p class="feed-skeleton-text"><ion-skeleton-text animated></ion-skeleton-text></p>
+      </div>
+
+      <div>
+          <ion-item>
+            <ion-avatar class="skeleton-avatar" slot="start">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-avatar>
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+              </h3>
+            </ion-label>
+          </ion-item>
+  
+          <p class="feed-skeleton-img"><ion-skeleton-text animated></ion-skeleton-text></p>
+          <p class="feed-skeleton-text"><ion-skeleton-text animated></ion-skeleton-text></p>
+      </div>
+
+      <div>
+          <ion-item>
+            <ion-avatar class="skeleton-avatar" slot="start">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-avatar>
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+              </h3>
+            </ion-label>
+          </ion-item>
+  
+          <p class="feed-skeleton-img"><ion-skeleton-text animated></ion-skeleton-text></p>
+          <p class="feed-skeleton-text"><ion-skeleton-text animated></ion-skeleton-text></p>
+      </div>
+
+    </ion-list>
+  </div>
+  <!-- Skeleton End -->
+
+  <p class="ion-text-center" *ngIf="!feeds.length && loadingFeeds == false">{{'No Feeds Yet' | translate}}</p>
+
+  <!-- Single feed card -->
+  <form [formGroup]="commentsArray">
+    <ion-card class="feed-card" *ngFor="let feed of feeds; let itt = index">
+        <ion-card-header class="feed-header">
+            <img class="business-logo" [src]="'http://198.12.92.202/public/uploads/'+ feed.group_avatar" onError="this.src='assets/images/user.png';">
+            <p class="business-name ion-align-items-end">{{ feed.group_name }}</p>
+            <p class="open-options" (click)="presentPopover(itt,feed.admin_id, $event)">...</p>
+        </ion-card-header>
+      
+        <ion-card-content>
+            <img class="feed-image card-photo" *ngIf="feed.file == true && feed.fileType == 'image' || feed.file == true && !feed.fileType" [src]="'http://198.12.92.202/public/uploads/'+ feed.attachment" (click)='viewImage("http://198.12.92.202/public/uploads/"+ feed.attachment)'>
+            <div *ngIf="feed.file == true && feed.fileType == 'video'" class="mh">
+              <video class="feed-video card-photo" *ngIf="feed.file == true && feed.fileType == 'video'" (click)="viewVideo('http://198.12.92.202/public/uploads/'+ feed.attachment)" preload="auto" [muted]="true">
+              <source  [src]="'http://198.12.92.202/public/uploads/'+ feed.attachment">
+              </video>
+              <div *ngIf="feed.file == true && feed.fileType == 'video'" class="playpause" (click)="viewVideo('http://198.12.92.202/public/uploads/'+ feed.attachment)">
+              </div>
+            </div>
+            <div *ngIf="feed.file == true && feed.fileType == 'doc'">
+              <div class="" style=" display: flex; justify-content: center;">
+                <ion-col size='2'>
+                  <div>
+                    <ion-icon name='attach'></ion-icon>
+                  </div>
+                </ion-col>
+                <ion-col size='8'>
+                    <div>
+                      {{ feed.attachment }}
+                   </div>
+                </ion-col>
+                <ion-col size='2'>
+                    <div>
+                        <ion-icon class="file-attach {{ fileArray[feed._id] ? 'hidden' : '' }}" name='md-download' ios="ios-download" id="download-{{ itt }}" md="md-download" (click)="downloadAttachment(feed.attachment, itt)"></ion-icon>
+                        <ion-icon class="file-attach {{ fileArray[feed._id] ?  '' : 'hidden' }}" name='md-open' ios="ios-open" id="play-{{ itt }}" md="md-open" (click)="openFile(feed.attachment, itt)"></ion-icon>
+                        <ion-spinner name="lines" color="primary" class="hidden" id="spinner-{{ itt }}"></ion-spinner>
+                    </div>
+                </ion-col>
+              </div>
+            </div>
+            
+            <p class="post-text" (click)="requstEdit(itt)" *ngIf="!feed.editable_caption">
+              {{ feed.text }}
+            </p>
+            <!-- <ion-item *ngIf="feed.editable_caption">
+              <ion-input type="text" placeholder="{{ feed.text }}" formControlName="{{ itt }}-cap"></ion-input>
+              <ion-buttons slots='end'>
+                <ion-button (click)="edit(itt)">
+                  <ion-icon slot="icon-only" name="md-send" color="blue"></ion-icon>
+                </ion-button>
+                </ion-buttons>
+              </ion-item> -->
+            <div class="card-options">
+              <ion-button fill="clear" (click)="like(itt)">
+                  <ion-icon *ngIf="feed.liked == false" slot="icon-only" name="md-star-outline" color="blue"></ion-icon>
+                  <ion-icon *ngIf="feed.liked == true" slot="icon-only" name="md-star" color="blue"></ion-icon>
+              </ion-button>
+              <ion-button fill="clear">
+                  <ion-icon slot="icon-only" name="md-chatboxes" color="blue"></ion-icon>
+              </ion-button>
+              <span id="{{ itt }}" *ngIf="feed.comments.length > 1" (click)="viewAllComments($event)">{{ 'View' | translate }} {{ feed.comments.length }} {{ 'comments' | translate }}</span>
+            </div>
+            <div class="top-comment" *ngIf="feed.comments.length">
+              <div class="comment-avatar-container">
+                  <img class="business-logo" src="assets/images/user.png">
+              </div>
+              <div class="comment-text">
+                  <p>{{ feed.comments[0].text }}</p>
+                  <p class="time-stamp">{{ feed.comments[0].created_on | date: 'H:mm' }}</p>
+              </div>
+            </div>
+
+            <div class="all-comments hide" id="{{ itt }}-comments">
+
+              <div *ngFor="let comment of feed.comments; let itt = index">
+                <div class="comment" *ngIf="itt > 0">
+                  <div class="comment-avatar-container">
+                      <img class="business-logo" src="assets/images/user.png">
+                  </div>
+                  <div class="comment-text">
+                      <p>{{ comment.text }}</p>
+                      <p class="time-stamp">{{ comment.created_on | date: 'H:mm' }}</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="comment-box">
+              <div class="comment-avatar-container">
+                  <img class="business-logo" src="assets/images/user.png">
+              </div>
+              <div class="comment-input" >
+                <ion-input type="text" placeholder="{{ 'Add Comment' | translate }}" [formControlName]="itt">
+              </ion-input>
+              </div>
+            </div>
+            <div class="buttons-container">
+              <ion-button fill="clear" (click)="comment(itt)">
+                  <ion-icon slot="icon-only" name="md-send" color="medium"></ion-icon>
+              </ion-button>
+            </div>
+        </ion-card-content>
+
+      </ion-card>
+    </form>
+    <!-- Single card end -->
+
+    <!-- Single feed card -->
+      <!-- <ion-card class="feed-card">
+          <ion-card-header class="feed-header">
+                <img class="business-logo" src="assets/images/user.png">
+                <p class="business-name ion-align-items-end">Business Name 2</p>
+                <p class="open-options">...</p>
+          </ion-card-header>
+        
+          <ion-card-content>
+              <img src="assets/images/card-photo.png" class="card-photo">
+              <div class="card-options">
+                <ion-button fill="clear">
+                    <ion-icon slot="icon-only" name="md-star" color="medium"></ion-icon>
+                </ion-button>
+                <ion-button fill="clear">
+                    <ion-icon slot="icon-only" name="md-chatboxes" color="medium"></ion-icon>
+                </ion-button>
+                <ion-button fill="clear">
+                    <ion-icon slot="icon-only" name="md-share" color="medium"></ion-icon>
+                </ion-button>
+              </div>
+              <p class="post-text">
+                The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. 
+                Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex! Fox nymphs grab quick-jived
+              </p>
+          </ion-card-content>
+  
+      </ion-card> -->
+      <!-- Single card end -->
+      
+
+</ion-content>
+  

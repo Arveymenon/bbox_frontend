@@ -1,0 +1,18 @@
+app-view-video {
+    background: black !important;
+}
+
+.video-wrapper {
+  display: flex;
+  align-items: center; /* horizontal */
+  justify-content: center; /* vertical */
+}
+
+.video-preview {
+    // max-height: 80%;
+    width: 100%;;
+}
+
+.bg-black{
+  --background: black !important;
+}

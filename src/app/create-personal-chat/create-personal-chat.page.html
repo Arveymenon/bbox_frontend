@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-button (click)="back()">
+            <ion-icon class="back-button" slot="icon-only" name="md-arrow-back"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+    <h1 class="ion-title"> {{ 'Start Chatting' | translate }}</h1>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main">
+      <p class="header">{{'Enter Details'|translate}}</p>
+      <div class="add-member-form">
+          <ion-item class="rounded" lines="none">
+            <ion-input type="text" placeholder="{{ 'Search User' | translate }}" primary [(ngModel)]="searchQuery" 
+            (keyup)="refreshUserList($event)"
+            show-cancel="true" ></ion-input>
+          </ion-item>
+          <div class="suggestions">
+            <ion-grid class="ion-no-padding">
+              <div *ngFor="let u of userService.users">
+                <ion-row class="ion-no-padding" *ngIf="u._id != this.id">
+                  <ion-col size="1">
+                    <img class="member-photo" src="assets/images/user.png">
+                  </ion-col>
+                  <ion-col size="11">
+                    <a class="action-btn" (click)="addmember(u._id,u.name)"><p><span>{{ u.name }}</span> <span>@ {{ u.user_id }}</span></p></a>
+                  </ion-col>
+                </ion-row>
+              </div>
+             
+              
+            </ion-grid>
+            <p class="cant-find" (click)="inviteMembers()">{{ cant_find }}</p>
+          </div>
+          <p class="header">{{'Members'|translate}}</p>
+      </div>
+  </div> 
+  
+  <!-- Select Individual Members -->
+  <div class="all-images-row">
+      <div class="individual-user-container" id="first-container" *ngFor="let i of userArray; let itt of index">
+        <div class="individual-image-container" (click)="selectIndividual($event,itt)" >
+            <img src="assets/images/user.png" class="large-image" id="first-image">
+        </div>
+        <form name="addform">
+        <ion-icon slot="icon-only" name="md-checkmark" color="light" class="individual-checkmark" id="first-image" (click)="selectIndividual($event,itt)" ></ion-icon>
+        <p class="individual-name">{{ i.nameval }}</p>
+       
+        </form>
+      </div>
+      
+      
+
+       
+        
+
+        <div class="individual-user-container">
+            <div class="individual-image-container">
+                <img src="assets/images/invite.png" class="large-image">
+            </div>
+        </div>
+      
+    </div>
+
+  <div class="add-member-button">
+      <ion-button expand="block" shape="round" (click)="addtogroup()">{{'Create'|translate}}</ion-button>
+  </div>
+
+</ion-content>

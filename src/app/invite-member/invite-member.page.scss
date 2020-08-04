@@ -1,0 +1,86 @@
+//Ion header Styles
+.ion-title{
+    text-align: left !important;
+    font-size: 17px;
+    font-weight:600;
+    padding-left:20px;
+    margin: 15px 0 15px 0;
+}
+
+//Page Styles
+.main{
+    margin: 25px 15px !important;
+}
+
+//Header Styles
+.header{
+    color: #1A1A1A;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: left;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+//Form Styles
+.invite-member-form{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.add-member-form ion-item{
+    margin: 30px auto 0 auto;
+}
+
+.rounded{
+    border: 2px solid #E2E2E2;
+    margin: 0 20px 0 20px;
+    --border-width: 0 0 0 0;
+    border-radius: 8px
+}
+
+//QR Code Styles
+
+.qr-container, .social-container{
+    display: inline-block;
+}
+
+.qr{
+    height: 150px;
+    border: 2px solid #707070;
+}
+
+//Icon Styles
+
+.camera-icon{
+    min-height: 40px;
+    min-width: 40px;
+    margin-left:-10px;
+}
+
+.social-container{
+    height: 150px;
+    margin-left: 10px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+@media(max-width:325px){
+    .qr{
+        height: 100px !important;
+    }
+    .social-container{
+        height: 100px;
+    }
+    .social-icon{
+        height: 30px;
+    }
+}
+
+.social-icon{
+    text-align: left;
+    display: block;
+    height: 40px;
+}
+

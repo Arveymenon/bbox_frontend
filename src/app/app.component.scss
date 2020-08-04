@@ -1,0 +1,21 @@
+.on-call {
+    height: 40px;
+    position: fixed;
+    bottom: 0px;
+    padding: 8px;
+    background-color: var(--ion-color-success);
+    text-align: center;
+    width: 100%;
+    color: white;
+}
+
+.no-network {
+    height: 40px;
+    position: fixed;
+    bottom: 0px;
+    padding: 8px;
+    background-color: var(--ion-color-danger);
+    text-align: center;
+    width: 100%;
+    color: white;
+}

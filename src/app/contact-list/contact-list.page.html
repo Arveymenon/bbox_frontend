@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Contacts</ion-title>
+  </ion-toolbar>
+  <!-- <ion-searchbar [(ngModel)]="searchTerm"
+    (ionChange)="showContacts()">
+  </ion-searchbar> -->
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-virtual-scroll [items]="allContacts" approxItemHeight="60px">
+    <ion-item *virtualItem="let item" (click)="checkAndCreateGroup(item._id, item.name)">
+      <ion-avatar slot="start">
+        <img [src]="avatarArray[item.mobile]">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ item.name }}</h2>
+        <h3>{{ item.mobile }}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-virtual-scroll>
+  <ion-item><span class="primary-color" (click)="goToInvitePage()">Invite Other Members</span></ion-item>
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none" (click)="edit()" *ngIf="permission == true && this.admin_id == this.user_id">
+    <ion-label>
+      {{ 'Edit' | translate }}
+    </ion-label>
+    <ion-icon name="md-create" slot="end"></ion-icon>
+  </ion-item>
+  <ion-item  lines="none" (click)="delete()" *ngIf="permission == true && this.admin_id == this.user_id">
+    <ion-label>
+      {{ 'Delete' | translate }}
+
+    </ion-label>
+    <ion-icon name="md-trash" slot="end"></ion-icon>
+  </ion-item>
+  <ion-item lines="none" (click)="report()" *ngIf="this.admin_id != this.user_id">
+    <ion-label>
+      {{ 'Report' | translate }}
+
+    </ion-label>
+    <ion-icon name="md-warning" slot="end"></ion-icon>
+  </ion-item>
+  <!-- <ion-item lines="none">
+    <ion-label>
+      {{ 'Share' | translate }}
+    </ion-label>
+    <ion-icon name="ios-share-alt" slot="end"></ion-icon>
+  </ion-item> -->
+</ion-content>

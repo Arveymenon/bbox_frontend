@@ -1,0 +1,250 @@
+// Header Styles
+ion-title{
+    text-align: left;
+}
+
+//Main Styles
+
+.main{
+    margin:10px;
+    padding-bottom: 120px;
+}
+
+//Chat Styles
+
+//Received Message Styles
+// .img-container{
+//     max-width: 50px !important;
+// }
+
+// .sender-photo{
+//     border-radius: 50%;
+//     margin-top:20px;
+// }
+
+// .message-bubble-received-container{
+//     margin: 20px 15px 0px 10px;
+// }
+
+// .message-bubble-received{
+//     background: #F1F1F1;
+//     border-top-right-radius: 15px;
+//     border-bottom-right-radius: 15px;
+//     border-bottom-left-radius: 15px;
+//     padding: 15px;
+//     display: inline-block;
+// }
+
+// .sender-name{
+//     color: #7A8AA0;
+//     margin: 0;
+// }
+
+// .received-message{
+//     color:#475255;
+//     margin: 0;
+// }
+
+// .message-time{
+//     font-size: 10px;
+//     color: #7A8AA0;
+//     margin: 5px;
+// }
+
+.user-icon{
+    margin: 1px;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+}
+
+.bubble-container{
+    overflow: auto
+}
+
+.message-received-flex-box{
+    display:flex;
+    margin-bottom: 10px;
+}
+
+.img-container-received-flex{
+    margin-right:15px;
+}
+
+.sender-photo-flex{
+    max-width: 50px;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.message-bubble-received-flex-container{
+    max-width: 90%;
+    min-width: 75px;
+}
+
+.sender-name{
+    color: #7A8AA0;
+    margin: 0;
+}
+.message-bubble-received-flex{
+    background: #F1F1F1;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    // padding: 15px;
+    padding: 9px;
+    max-width: 500px;
+}
+
+.message-bubble-received-flex-longpress{
+    background: #a9a9a9;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    // padding: 15px;
+    padding: 9px;
+}
+
+.message-bubble-received-flex-reported{
+    background: #F1F1F1;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    // padding: 15px;
+    padding: 9px;
+}
+
+
+
+.received-message-flex{
+    margin: 0;
+    color: #475255;
+}
+
+.reply-button{
+    font-size: 22px;
+}
+
+.message-time{
+    font-size: 10px;
+    color: #7A8AA0;
+    margin: 5px;
+}
+
+
+
+//Sent Message Styles
+
+.message-sent-flex-box{
+    margin-bottom: 10px;
+}
+
+.flex-box-fix{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+// .flex-box-fix .message-time{
+//     margin-right: 60px;
+// }
+
+.img-container-sent-flex{
+    margin-left:15px;
+}
+
+.sender-photo-flex{
+    max-width: 50px;
+    border-radius: 50%;
+}
+
+.message-buble-sent-flex{
+    background: #005DDD;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    // padding: 15px;
+    padding: 9px;
+    max-width: 90%;
+}
+
+.sent-message-flex{
+    margin: 0;
+    color: white;
+}
+
+.reply-button{
+    font-size: 22px;
+}
+
+//HR styles
+.hr-text {
+  line-height: 1em;
+  position: relative;
+  outline: 0;
+  border: 0;
+  color: black;
+  text-align: center;
+  height: 1.5em;
+  opacity: .5;
+  &:before {
+    content: '';
+    // use the linear-gradient for the fading effect
+    // use a solid background color for a solid bar
+    background: #E2E2E2;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+  }
+  &:after {
+    content: attr(data-content);
+    position: relative;
+    display: inline-block;
+    color: black;
+    font-family: 'avenir', sans-serif;
+    font-size: 12px;
+    padding: 0 .5em;
+    line-height: 1.5em;
+    // this is really the only tricky part, you need to specify the background color of the container element...
+    color: #818078;
+    background-color: #fcfcfa;
+  }
+}
+
+.chatbox-wrapper {
+    width: calc(100% - 20px);
+}
+
+
+.type-message-container .preview{ 
+    width: calc(100% - 20px);
+}
+
+.added-new-contact{
+    background: lightskyblue;
+    border-radius: 15px;
+    padding: 4px;
+    max-width: 500px;
+}
+
+.added-new-contact-container{
+    max-width: 90%;
+    min-width: 75px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.added-new-contact-container p{
+    padding: 5px;
+    font-size: 10px;
+}
+
+.preview ion-chip {
+    padding: 10px !important;
+}
+
+.preview ion-chip ion-icon {
+    margin: unset !important;
+}

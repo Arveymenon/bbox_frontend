@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="primary">
+          <ion-button color="light" (click)="dismiss()">
+              <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <ion-title>{{ 'ChooseContact' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content no-padding>
+  <ion-searchbar [(ngModel)]="searchTerm"
+    (ionChange)="fetchContactsData()">
+  </ion-searchbar>
+  <ion-list>
+    <div *ngFor="let contact of allContacts">
+      <ion-item-divider>
+        <ion-label>
+          {{ contact.displayName }}
+        </ion-label>
+      </ion-item-divider>
+      <ion-item *ngFor="let number of contact.phoneNumbers" (click)="sendInviteSMS(number.value)">
+        <ion-label *ngIf="number.value" class="ion-text-wrap">
+          <ion-text color="primary">
+            <h3>{{ number.value }}</h3>
+          </ion-text>
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

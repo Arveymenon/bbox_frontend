@@ -1,0 +1,102 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button (click)="back()">
+              <ion-icon class="back-button" slot="icon-only" name="md-arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+      <h1 class="ion-title">{{'Add Members'|translate}}</h1>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+    <div class="main">
+        <p class="header">{{'Enter Details'|translate}}</p>
+        <div class="add-member-form">
+            <ion-item class="rounded" lines="none">
+              <ion-input type="text" placeholder="{{ 'Search User' | translate }}"  primary [(ngModel)]="searchQuery" 
+              (keyup)="refreshUserList($event)"
+              show-cancel="true" ></ion-input>
+            </ion-item>
+            <div class="suggestions">
+              <ion-grid class="ion-no-padding">
+                <ion-row class="ion-no-padding" *ngFor="let u of userService.users">
+                  <ion-col size="2">
+                    <img class="member-photo" src="assets/images/user.png">
+                  </ion-col>
+                  <ion-col size="10">
+                    <a class="action-btn" (click)="addmember(u._id,u.name)"><p><span>{{ u.name }}</span></p></a>
+                  </ion-col>
+                </ion-row>
+               
+                
+              </ion-grid>
+              <!-- <p class="cant-find">{{'cant find' |  translate}} </p> -->
+              <p class="cant-find"  (click)="inviteMembers()">{{ cant_find }} </p>
+            </div>
+            <p class="header">{{'Members'|translate}}</p>
+        </div>
+    </div> 
+    
+    <!-- Select Individual Members -->
+    <div class="all-images-row">
+        <div class="individual-user-container" id="first-container" *ngFor="let i of userArray; let itt of index">
+          <div class="individual-image-container" (click)="selectIndividual($event,itt)" >
+              <img src="assets/images/user.png" class="large-image" id="first-image">
+          </div>
+          <form name="addform">
+          <ion-icon slot="icon-only" name="md-checkmark" color="light" class="individual-checkmark" id="first-image" (click)="selectIndividual($event,itt)" ></ion-icon>
+          <p class="individual-name">{{ i.nameval }}</p>
+         
+          </form>
+        </div>
+        
+        
+
+         
+          
+
+          <div class="individual-user-container">
+              <div class="individual-image-container">
+                  <img src="assets/images/invite.png" class="large-image">
+              </div>
+          </div>
+        
+      </div>
+
+      <ion-list class="ion-no-padding" lines="none">
+
+      <!-- Single chat item, for new message add class "unread" and add attribute color with value "secondary" -->
+        <ion-item class="chat-item " color="" *ngFor="let gp of groupService.groups">       
+          <ion-label>
+            <ion-grid>
+              <ion-row>
+                <ion-col size-sm="2" size-xs="2" class="left">
+                    <img class="individual-image-container" src="assets/images/user.png">
+                </ion-col>
+                <ion-col size-sm="8" size-xs="8" class="middle">
+                    <h2 class="group-name">{{gp.name}}</h2>
+                </ion-col>
+                <ion-col size-sm="2" size-xs="2">
+                 
+                  <ion-row>
+                    <ion-col no-padding class="message-badge-container">
+                    
+                      <ion-button fill="clear" class="ion-no-padding approve-button" (click)="delete(gp._id)">
+                          <ion-icon name="md-close" color="danger"></ion-icon>
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+    <div class="add-member-button">
+        <ion-button *ngIf="groupService.groups && groupService.groups.length != 0" expand="block" shape="round" (click)="addtogroup()">{{ 'update' | translate }}</ion-button>
+        <ion-button *ngIf="groupService.groups && groupService.groups.length == 0" expand="block" shape="round" (click)="addtogroup()">{{ 'Create' | translate }}</ion-button>
+    </div>
+
+</ion-content>

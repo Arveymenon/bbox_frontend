@@ -1,0 +1,5 @@
+<ion-app>
+  <ion-router-outlet></ion-router-outlet>
+  <div class="on-call" *ngIf="recieving_call" (click)="joinCall()">Tap to go back to Call</div>
+  <div class="no-network" *ngIf="noNetwork">No Internet Connection</div>
+</ion-app>

@@ -1,0 +1,7 @@
+{
+  "name": "bbox",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

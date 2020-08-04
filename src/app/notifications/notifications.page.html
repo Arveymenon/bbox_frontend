@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon class="back-button" slot="icon-only" name="md-arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+    <ion-title>{{ 'notifications' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-avatar slot="start">
+        <!-- <img class="user-icon" src="http://198.12.92.202/public/uploads/{{ img_src }}" onError="this.src='assets/images/user.png';"> -->
+    </ion-avatar>
+    <ion-label>
+      <h3>BBOX</h3>
+      <p>You have a new notification</p>
+      <p>Group name</p>
+    </ion-label>
+
+  </ion-item>
+</ion-content>

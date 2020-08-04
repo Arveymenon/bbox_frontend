@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Blocked Users</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="blocked_users && !blocked_users.length">
+    <p class="ion-text-center">You haven't blocked anyone yet</p>
+  </div>
+  <ion-list>
+    <ion-item *ngFor="let item of blocked_users" (click)="deleteAlert(item._id, item.name)">
+      <ion-avatar slot="start">
+        <img [src]="'http://198.12.92.202/public/uploads/' + item.avatar" onError="this.src='assets/images/user.png';">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ item.name ? item.name : item.mobile }}</h2>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

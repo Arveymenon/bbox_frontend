@@ -1,0 +1,45 @@
+<ion-content>
+  <ion-button size="small" fill="clear" class="lang-switcher" (click)="toggleLang()">{{ lang }}</ion-button>
+  <div class="login-container">
+    <img class="logo" src="assets/images/logo.png">
+    <p *ngIf="!generatedOTP" class="text-center sms-message">{{'Welcome to B-Box' | translate}}<br>{{'Kindly enter your Mobile Number' | translate}}</p>
+    <p *ngIf="generatedOTP" class="text-center sms-message">{{'An OTP has been sent to your number' | translate}}<br>{{'You should receive it within 30s' | translate}}<br>{{ this.OTPmessage }}</p>
+    <div class="enter-mobile" *ngIf="!entered_number">
+      <input type="text"
+        ionicTelInput
+        [ionicTelInputOptions]="{initialCountry: 'jp'}"
+        (hasError)="hasError($event)"
+        (ionicTelOutput)="getNumber($event)"
+        (intlTelInputObject)="telInputObject($event)"
+        (countryChange)="onCountryChange($event)" style="height: 45px;" />
+      
+      <p *ngIf="error == false" class="text-center">{{'Kindly enter a valid Mobile Number' | translate}}</p>
+      <div class="login-button">
+        <ion-button type="submit" [disabled]="error == false" (click)="submitMobile()" expand="full" shape="round">{{ 'confirm' | translate }}</ion-button>
+      </div>
+    </div>
+    <div class="enter-otp" *ngIf="entered_number">
+      <ion-row text-center>
+        <ion-col>
+        <ion-input type="number" #otp1 [(ngModel)]="OTP[0]" required onKeyPress="if(this.value.length==2) return false;" (keyup)="otpController($event,otp2,'')">
+        </ion-input>
+        <ion-input type="number" #otp2 [(ngModel)]="OTP[1]" required onKeyPress="if(this.value.length==2) return false;" (keyup)="otpController($event,otp3,otp1)">
+        </ion-input>
+        <ion-input type="number" #otp3 [(ngModel)]="OTP[2]" required onKeyPress="if(this.value.length==2) return false;" (keyup)="otpController($event,otp4,otp2)">
+        </ion-input>
+        <ion-input type="number" #otp4 [(ngModel)]="OTP[3]" required onKeyPress="if(this.value.length==2) return false;" (ionChange)="otpController($event,'',otp3)">
+        </ion-input>
+        <!-- <ion-input #otp5 [(ngModel)]="OTP[4]" required maxLength="1" (keyup)="otpController($event,otp6,otp4)">
+        </ion-input>
+        <ion-input #otp6 [(ngModel)]="OTP[5]" required maxLength="1" (keyup)="otpController($event,'',otp5)">
+        </ion-input> -->
+        </ion-col>
+      </ion-row>
+      <p *ngIf="otpError == true" class="text-center">{{'The OTP Entered is Invalid' | translate}}<br> {{'Kindly retry with a valid OTP' | translate}}</p>
+      <!-- <div class="login-button">
+        <ion-button type="submit" (click)="submitOTP()" expand="full" shape="round">{{ 'Submit' | translate }}</ion-button>
+      </div> -->
+      <p>{{'Not Recieved your Code?' | translate}}<br><span class="primary-color" (click)="sendOTP()">{{'Resend Code' | translate}}</span></p>
+    </div>
+  </div>
+</ion-content>

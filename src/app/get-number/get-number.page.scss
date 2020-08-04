@@ -1,0 +1,77 @@
+.lang-switcher {
+    float: right;
+}
+
+.login-container{
+    margin-top: 100px;
+    text-align: center;
+}
+
+.logo{
+    height: 125px;
+}
+
+.login-form{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.login-form ion-item{
+    margin: 30px auto 0 auto;
+    max-width: 300px;
+}
+.rounded{
+    border: 2px solid #E2E2E2;
+    margin: 0 50px 0 50px;
+    --border-width: 0 0 0 0;
+    border-radius: 8px
+}
+
+.login-button{
+    text-align: center;
+    margin: 50px auto 0 auto;
+    max-width: 150px;
+    --box-shadow: none;
+}
+
+.flag-container .country-list {
+    position: relative;
+    width: 100%;
+}
+
+.intl-tel-input input {
+    height: 45px;
+}
+
+ion-input{
+    display:inline-block;
+    width:40px;
+    height:40px;
+    margin:10px;
+    border-radius: 50%;
+    --background:#e1e1e1;
+    --padding-start:0px;
+}
+
+.sms-message {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.mobile-input {
+    margin-top: 20px;
+}
+
+.enter-mobile {
+    margin-top: 10%;
+}
+
+.enter-mobile input {
+    border: 1px solid rgba(0, 0, 0, 0.30);
+    border-radius: 4px;
+}
+
+.enter-mobile input:focus {
+    outline-color: none;
+    outline-width: 0px;
+}

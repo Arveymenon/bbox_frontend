@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-button (click)="back()">
+            <ion-icon class="back-button" slot="icon-only" name="md-arrow-back"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+    <h1 class="ion-title">{{ groupType == 1 ? 'Create a Group' : 'Create a Subscriber List' |translate}}</h1>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main">
+    <p class="header">{{'Enter Details'|translate}}</p>
+
+
+    <div class="user-container">
+      <img class="user-photo" *ngIf="groupType == 1" [src]="this.images[0] ? this.images[0].path : null" onError="this.src='assets/images/group.png';">
+      <img class="user-photo" *ngIf="groupType == 2" [src]="this.images[0] ? this.images[0].path : null" onError="this.src='assets/images/user.png';">
+      <!-- 'https://graph.facebook.com/10219749290953972/picture' -->
+      <input type="file" (change)="getFileFromBrowser($event, 'image')" id="group_image" accept="image/*" style="display: none">
+      <ion-icon class="settings-icon group-icon" (click)="selectImage()" name="md-camera"></ion-icon>
+    </div>
+
+
+    <form [formGroup]="groupform" (ngSubmit)="onSubmit()">
+    <div class="login-form">
+        <ion-item class="rounded" lines="none">
+          <ion-input type="text" placeholder="{{ groupType == 1 ? 'Group Name' : 'Subscriber List Name' |translate}}" formControlName="name"></ion-input>
+          <!-- <img class="camera-icon" (click)="SelectImage()" src="assets/images/camera.png"> -->
+          <input type="file" (change)="getFileFromBrowser($event, 'image')" id="image" accept="image/*" style="display: none">
+        </ion-item> 
+     
+        <ion-item class="rounded" lines="none">
+          <ion-textarea placeholder="{{ groupType == 1 ? 'Group Description' : 'Subscriber List Description' |translate}}..." name="description" formControlName="description" rows="5"></ion-textarea>
+        </ion-item>
+        
+        <div class="login-button">
+            <!-- <ion-button expand="block" shape="round" routerLink="addmember">Create</ion-button> -->
+            <ion-button expand="block" shape="round" type="submit">{{'Create'|translate}}</ion-button>
+        </div>
+    </div>
+    </form>
+  </div>
+</ion-content>

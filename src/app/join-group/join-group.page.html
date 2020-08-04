@@ -1,0 +1,176 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-button routerLink="/home/tabs/tab1">
+            <ion-icon class="back-button" slot="icon-only" name="md-arrow-back"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <ion-title>
+        {{'Join a Group'|translate}}
+      </ion-title>
+      <ion-buttons slot="end" size="small">
+          <ion-button class="no-padding">
+            <ion-icon slot="icon-only" name="search"></ion-icon>
+          </ion-button>
+          <ion-button>
+            <ion-icon slot="icon-only" name="notifications"></ion-icon>
+          </ion-button>
+          <ion-button>
+            <ion-icon slot="icon-only" name="person"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button  (click)="createGroup()">
+          <ion-icon name="md-create"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    <ion-list class="ion-no-padding" lines="none" style="padding-bottom: 100px;">
+      <div *ngFor="let gp of userArray">
+
+      <!-- Single chat item, for new message add class "unread" and add attribute color with value "secondary" -->
+        <ion-item class="chat-item unread" color="secondary" >
+                  
+          <ion-label>
+            <ion-grid>
+              <ion-row>
+                <ion-col size-sm="1" size-xs="2" class="left">
+                    <img class="group-icon" src="assets/images/user.png">
+                </ion-col>
+                <ion-col size-sm="9" size-xs="8" class="middle">
+                    <h2 class="group-name">{{gp.name}}</h2>
+                   
+                </ion-col>
+                <ion-col size-sm="2" size-xs="2">
+                  <ion-row class="right">
+                    <ion-col class="message-time-container ion-no-padding">
+                      <!-- <span class="message-time">19:37</span> -->
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col no-padding class="message-badge-container">
+                      <ion-button fill="clear" class="ion-no-padding approve-button" (click)="onAccept(gp.id)">
+                          <ion-icon name="md-checkmark"></ion-icon>
+                      </ion-button>
+                      <ion-button fill="clear" class="ion-no-padding approve-button" (click)="onDelete(gp.id)">
+                          <ion-icon name="md-close" color="danger"></ion-icon>
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-label>
+        </ion-item>
+        </div>
+
+<!-- 
+        <ion-item class="chat-item">
+            <ion-label>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size-sm="1" size-xs="2" class="left">
+                      <img class="group-icon" src="assets/images/user.png">
+                  </ion-col>
+                  <ion-col size-sm="9" size-xs="8" class="middle">
+                      <h2 class="group-name">Group 2</h2>
+                      <p class="group-message"><span>Emma Doe</span>: <span>Sounds Awesome</span></p>
+                  </ion-col>
+                  <ion-col size-sm="2" size-xs="2">
+                    <ion-row class="right">
+                      <ion-col class="message-time-container ion-no-padding">
+                        <span class="message-time">19:37</span>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col no-padding class="message-badge-container">
+                        <ion-button fill="clear" class="ion-no-padding approve-button">
+                            <ion-icon name="md-checkmark"></ion-icon>
+                        </ion-button>
+                        <ion-button fill="clear" class="ion-no-padding approve-button">
+                            <ion-icon name="md-close" color="danger"></ion-icon>
+                        </ion-button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-label>
+          </ion-item>
+
+
+        <ion-item class="chat-item">
+            <ion-label>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size-sm="1" size-xs="2" class="left">
+                      <img class="group-icon" src="assets/images/user.png">
+                  </ion-col>
+                  <ion-col size-sm="9" size-xs="8" class="middle">
+                      <h2 class="group-name">Group 3</h2>
+                      <p class="group-message"><span>Emma Doe</span>: <span>Sounds Awesome</span></p>
+                  </ion-col>
+                  <ion-col size-sm="2" size-xs="2">
+                    <ion-row class="right">
+                      <ion-col class="message-time-container ion-no-padding">
+                        <span class="message-time">19:37</span>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col no-padding class="message-badge-container">
+                        <ion-button fill="clear" class="ion-no-padding approve-button">
+                            <ion-icon name="md-checkmark"></ion-icon>
+                        </ion-button>
+                        <ion-button fill="clear" class="ion-no-padding approve-button">
+                            <ion-icon name="md-close" color="danger"></ion-icon>
+                        </ion-button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-label>
+          </ion-item>
+
+
+        <ion-item class="chat-item">
+            <ion-label>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size-sm="1" size-xs="2" class="left">
+                      <img class="group-icon" src="assets/images/user.png">
+                  </ion-col>
+                  <ion-col size-sm="9" size-xs="8" class="middle">
+                      <h2 class="group-name">Group 4</h2>
+                      <p class="group-message"><span>Emma Doe</span>: <span>Sounds Awesome</span></p>
+                  </ion-col>
+                  <ion-col size-sm="2" size-xs="2">
+                    <ion-row class="right">
+                      <ion-col class="message-time-container ion-no-padding">
+                        <span class="message-time">19:37</span>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col no-padding class="message-badge-container">
+                        <ion-button fill="clear" class="ion-no-padding approve-button">
+                            <ion-icon name="md-checkmark"></ion-icon>
+                        </ion-button>
+                        <ion-button fill="clear" class="ion-no-padding approve-button">
+                            <ion-icon name="md-close" color="danger"></ion-icon>
+                        </ion-button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-label>
+          </ion-item> -->
+
+
+    </ion-list>
+</ion-content>

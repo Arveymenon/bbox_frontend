@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-button routerLink="/group-chat-admin/{{ this.room_id }}">
+          <ion-icon class="back-button" slot="icon-only" name="md-arrow-back"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-title routerLink="groupdetails">
+      <div *ngIf="video_chat == 1">
+        {{ 'Start A Video Chat' | translate }}
+        </div>
+      <div *ngIf="video_chat == 0">
+        {{ 'Start An Audio Chat' | translate }}
+        </div>
+    </ion-title>
+    <ion-buttons slot="end" size-xs="small">
+      <ion-button>
+        <ion-icon slot="icon-only" name="md-search"></ion-icon>
+      </ion-button>
+      <!-- <ion-button>
+        <ion-icon slot="icon-only" name="md-notifications"></ion-icon>
+      </ion-button> -->
+      <ion-button>
+        <ion-icon slot="icon-only" name="md-create"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div class="main">
+    
+        <p class="header">{{'Feed will be sent to'|translate}}</p>
+  
+          <div class="all-message-container" (click)="selectAll($event)">
+            <div class="images-container">
+              <div class="first-row">
+                  <img [src]="userService.setAvatar(userArray[0] ? userArray[0].avatar: '')" onError="this.src='assets/images/user.png';" class="small-image">
+                  <img [src]="userService.setAvatar(userArray[1] ? userArray[1].avatar: '')" onError="this.src='assets/images/user.png';" class="small-image">
+              </div>
+              <div class="second-row">
+                  <img [src]="userService.setAvatar(userArray[2] ? userArray[2].avatar: '')" onError="this.src='assets/images/user.png';" class="small-image">
+                  <img [src]="userService.setAvatar(userArray[3] ? userArray[3].avatar: '')" onError="this.src='assets/images/user.png';" class="small-image">
+              </div>
+            </div>
+            <ion-icon slot="icon-only" name="md-checkmark" color="light" class="checkmark hidden"></ion-icon>
+            <p class="all-text">{{'All'|translate}}</p>
+          </div>
+
+          <p class="header sub">{{'Select Groups'|translate}}</p>
+
+          
+            
+          <div class="all-images-row">
+            <div *ngFor="let user of userArray; index as pos">
+              <div *ngIf="user.id != user_id" class="individual-user-container" id="container-{{ pos+1 }}">
+
+                <div class="individual-image-container" (click)="selectIndividual($event, pos)" >
+                    <img class="large-image" id="image-{{ pos+1 }}" *ngIf="user.avatar" [src]="userService.setAvatar(user.avatar)">
+                    <img class="large-image" id="image-{{ pos+1 }}" *ngIf="!user.avatar" src="assets/images/user.png">
+                </div>
+                <ion-icon slot="icon-only" name="md-checkmark" color="light" class="individual-checkmark" id="{{ pos+1 }}" (click)="selectIndividual($event, pos)" ></ion-icon>
+                <p class="individual-name">{{ user.name }}</p>
+              </div>
+            </div>
+          </div>
+
+      </div>
+
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+          <ion-fab-button (click)="startVideoChat()">
+            <ion-icon name="md-send"></ion-icon>
+          </ion-fab-button>
+      </ion-fab>
+
+</ion-content>

@@ -1,0 +1,373 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+@import '../node_modules/intl-tel-input-mobile/build/css/intlTelInput.css';
+
+@font-face {
+  font-family: 'avenir';
+  src: url(assets/fonts/Avenir-Bold.otf) format("opentype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'avenir';
+  src: url(assets/fonts/Avenir.otf) format("opentype");
+  font-weight: 600;
+}
+
+ion-toolbar button{
+    padding: 0px !important;
+}
+
+h1,h2,h3,h4,h5,h6,p,span{
+    font-family: 'avenir', sans-serif;
+}
+
+.qr-code > img {
+    margin-top: -18px;
+}
+
+bg-black {
+    position: absolute;
+    background: black !important;
+}
+
+.width-100 {
+    width: 100% !important;
+}
+
+.height-100 {
+    height: 100% !important;
+}
+
+
+//Text area Styles
+
+
+.type-message-container .text-box-container{
+    margin-top: 50px;
+    position: absolute;
+    bottom: 0;
+    width: 91%;
+    height: 300px;
+}
+
+.type-message-container .rounded{
+    border: 2px solid #E2E2E2;
+    --border-width: 0 0 0 0;
+    border-radius: 8px
+}
+
+.type-message-container ion-textarea{
+    height: 75px;
+    padding-bottom: 40px;
+}
+
+.type-message-container .preview{ 
+    bottom: 120px;
+    position: fixed;
+    width: calc(100% - 40px);
+}
+
+.type-message-container ion-progress-bar {
+    position: absolute;
+    bottom: 108px;
+    width: calc(100% - 40px);
+}
+
+.type-message-container .buttons-container{
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    z-index: 1;
+}
+.type-message-container .buttons-container ion-button{
+    --padding-start:5px;
+    --padding-end:5px;
+}
+
+.type-message-container .buttons-container ion-icon{
+    padding: 0;
+    font-size: 18px;
+}
+
+.type-message-container .chatbox-wrapper {
+    position: fixed;
+    bottom: 20px;
+    width: calc(100% - 40px);
+    z-index: 1;
+}
+
+@media only screen and (min-height: 751px) {
+    .type-message-container ion-textarea {
+        height: 150px;
+      }
+}
+
+@media only screen and (max-height: 750px) {
+    .type-message-container .text-box-container{
+        height: 150px;
+    }
+}
+
+
+@media only screen and (max-height: 700px) {
+   
+    .type-message-container .text-box-container{
+        height: 150px;
+    }
+}
+
+@media only screen and (max-height: 600px) {
+    .text-box-container{
+        height: 125px;
+    }
+}
+
+.dont-break-out {
+
+    /* These are technically the same, but use both */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    -ms-word-break: break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+  
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  
+  }
+
+  .iti-flag {background-image: url("./assets/imgs/flags/flags.png") !important;}
+
+//   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { .iti-flag {background-image: url("./assets/imgs/flags/flags@2x.png");} }
+
+  .playpause {
+    background-image:url('assets/images/play.png');
+    background-repeat:no-repeat;
+    width: 60px;
+    height:auto;
+    position:absolute;
+    left:0%;
+    right:0%;
+    top:0%;
+    bottom:0%;
+    margin:auto;
+    background-size:contain;
+    background-position: center;
+}
+
+.download {
+    background-image:url('assets/images/download.png');
+    background-repeat:no-repeat;
+    width: 60px;
+    height:auto;
+    position:absolute;
+    left:0%;
+    right:0%;
+    top:0%;
+    bottom:0%;
+    margin:auto;
+    background-size:contain;
+    background-position: 50%;
+}
+
+.hidden {
+    display: none;
+    z-index: -100;
+}
+
+.message-buble-sent-flex-image ion-spinner {
+    position:absolute;
+    left:0%;
+    right:0%;
+    top:0%;
+    bottom:0%;
+    margin:auto;
+    background-size:contain;
+    background-position: center;
+}
+
+.message-buble-recieved-flex-image ion-spinner {
+    position:absolute;
+    left:0%;
+    right:0%;
+    top:0%;
+    bottom:0%;
+    margin:auto;
+    background-size:contain;
+    background-position: center;
+}
+
+.primary-color {
+    color: #005DDD;
+}
+
+.message-buble-sent-flex-image {
+    background: #005DDD;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding: 5px;
+    width: 210px;
+    max-height: 210px;
+    display: block;
+    position: relative;
+}
+
+.image-container{
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    display: flex;
+    position: relative;
+
+    width: 100%;
+    height: 210px;
+    overflow: hidden;
+    // height: 100%;
+    // overflow: hidden;
+    // align-items: center;
+    // justify-content: center;
+}
+
+.message-buble-sent-flex-image img {
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    max-height: 200px;
+    margin: auto;
+    display: block;
+}
+
+.message-buble-sent-flex-image video {
+    min-width: 100%; 
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    max-width: 200px;
+    max-height: 200px;
+}
+// received images chat bubble
+
+.message-buble-recieved-flex-image {
+    height: 210px;
+    width: 210px;
+    max-height: 210px;
+    background: #F1F1F1;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding: 5px;
+
+    overflow: hidden;
+}
+
+.message-buble-recieved-flex-image img {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+}
+
+.message-buble-recieved-flex-image video {
+    min-width: 100%; 
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.mh{
+    display:block;
+    width:auto;
+    position:relative;
+    width:100%;
+}
+
+.message-buble-sent-flex-file {
+    background: #005DDD;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding: 5px;
+    width: 210px;
+    height: 35px;
+}
+
+.message-buble-recieved-flex-file {
+    background: #F1F1F1;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding: 5px;
+    width: 210px;
+    height: 35px;
+}
+
+.dont-break-out .linkified {
+    color: white !important;
+}
+
+.group-icon .icon-inner {
+    width: 16px;
+    text-align: center;
+    margin: auto;
+}
+
+.file-attach {
+    margin-left: 5px;
+}
+
+.outer-chatbox-wrapper {
+    position: fixed;
+    bottom: 0px;
+    height: 120px;
+    width: 100%;
+    background: white;
+    z-index: 0;
+}
+
+.loading-wrapper.sc-ion-loading-md {
+    max-width: 22px;
+    max-height: 22px;
+    border-radius: 50%;
+}

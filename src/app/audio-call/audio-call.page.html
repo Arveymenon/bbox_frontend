@@ -1,0 +1,249 @@
+<!-- <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-button routerLink="/home/tabs/tab1/groupchat/groupchatadmin">
+            <ion-icon class="back-button" slot="icon-only" name="md-arrow-back"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <ion-title routerLink="groupdetails">
+        Emma
+      </ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+
+
+<ion-content id="video-room-content" [scrollY]="false" [scrollX]="false">
+<div class="main">
+
+  <div class="single-user  ion-text-center" *ngIf="(remoteUsers && !remoteUsers.length)" [ngStyle]="{'background-color': 'black' }">
+    <div class="color-overlay">
+      <!-- <img [src]="userService.setAvatar( group_data.avatar )" onError="this.src='assets/images/user.png';" class="caller-img"> -->
+      <img [src]="userService.setAvatar( group_data.avatar )" onError="this.src='assets/images/user.png';" class="caller-img">
+      <h3 class="user-name">{{ group_data.name }}</h3>
+      <h4 class="call-duration" [innerHTML]="timing"></h4>
+      <!-- <h4 class="call-duration time" *ngIf="timer">{{hoursDisplay ? hoursDisplay + ':' : ''}}{{(minutesDisplay) && (minutesDisplay <= 59) ? minutesDisplay + ':' : '00' + ':'}}{{(secondsDisplay) && (secondsDisplay <= 59) ? secondsDisplay : '00'}}</h4> -->
+      <!-- <div class="controls">
+          <ion-button fill="clear" disabled>
+              <ion-icon slot="icon-only" name="md-volume-high" color="light"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear">
+              <ion-icon slot="icon-only" name="md-mic-off" color="light"></ion-icon>
+          </ion-button>
+      </div> -->
+      <div class="end-call">
+          <ion-button fill="clear" (click)="exitSession()">
+              <ion-icon slot="icon-only" name="md-call" color="light"></ion-icon>
+          </ion-button>
+      </div>
+    </div>
+  </div>
+  <div class="single-user ion-text-center" *ngIf="remoteUsers && remoteUsers.length == 1" [ngStyle]="{'background-color': 'black' }">
+    <div class="color-overlay">
+      <img [src]="userService.setAvatar( group_data.avatar )" onError="this.src='assets/images/user.png';" class="caller-img">
+      <h3 class="user-name">{{ this.remoteUsers[0] ? this.remoteUsers[0].getNickname() : 'Emma' }}</h3>
+      <h4 class="call-duration">{{hoursDisplay ? hoursDisplay + ':' : ''}}{{(minutesDisplay) && (minutesDisplay <= 59) ? minutesDisplay + ':' : '00' + ':'}}{{(secondsDisplay) && (secondsDisplay <= 59) ? secondsDisplay : '00'}}</h4>
+      <div class="controls">
+          <ion-button fill="clear" (click)="setAudio()">
+              <ion-icon slot="icon-only" name="{{speakerBtnIcon}}" color="light"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" (click)="micStatusChanged()">
+              <ion-icon slot="icon-only" name="{{micBtnIcon}}" color="light"></ion-icon>
+          </ion-button>
+      </div>
+      <div class="end-call">
+          <ion-button fill="clear" (click)="exitSession()">
+              <ion-icon slot="icon-only" name="md-call" color="light"></ion-icon>
+          </ion-button>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="remoteUsers && remoteUsers.length == 2" style="height:100%">
+    <div class="single-user two ion-text-center" [ngStyle]="{'background-image': group_data.avatar ?'url('+ userService.setAvatar( group_data.avatar ) +'), url(assets/images/user.png); height:50%' : 'url(assets/images/user.png); height:50%' }">
+      <div class="color-overlay">
+        <img [src]="userService.setAvatar( group_data.avatar )" onError="this.src='assets/images/user.png';" class="caller-img">
+        <h3 class="user-name">{{ this.remoteUsers[0] ? this.remoteUsers[0].getNickname() : 'Emma' }}</h3>
+        <div class="end-call">
+            <ion-button fill="clear">
+                <ion-icon slot="icon-only" name="md-call" color="light"></ion-icon>
+            </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="single-user two ion-text-center" [ngStyle]="{'background-image': group_data.avatar ?'url('+ userService.setAvatar( group_data.avatar ) +'), url(assets/images/user.png); height:50%' : 'url(assets/images/user.png); height:50%' }">
+      <div class="color-overlay">
+        <img [src]="userService.setAvatar( group_data.avatar )" onError="this.src='assets/images/user.png';" class="caller-img">
+        <h3 class="user-name">{{ this.remoteUsers[1] ? this.remoteUsers[1].getNickname() : 'Emma' }}</h3>
+        
+        <div class="end-call">
+            <ion-button fill="clear">
+                <ion-icon slot="icon-only" name="md-call" color="light"></ion-icon>
+            </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Three users on call -->
+  <div *ngIf="remoteUsers && remoteUsers.length == 3" style="height:100%">
+      <div class="single-user three ion-text-center" [ngStyle]="{'background-image': group_data.avatar ?'url('+ userService.setAvatar( group_data.avatar ) +'), url(assets/images/user.png); height:33.33%' : 'url(assets/images/user.png); height:33.33%' }">
+        <div class="color-overlay">
+          <img src="assets/images/user.png" class="caller-img">
+          <h3 class="user-name">{{ this.remoteUsers[0] ? this.remoteUsers[0].getNickname() : 'Emma' }}</h3>
+          <div class="end-call">
+              <ion-button fill="clear">
+                  <ion-icon slot="icon-only" name="md-call" color="light"></ion-icon>
+              </ion-button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="single-user three ion-text-center" [ngStyle]="{'background-image': group_data.avatar ?'url('+ userService.setAvatar( group_data.avatar ) +'), url(assets/images/user.png); height:33.33%' : 'url(assets/images/user.png); height:33.33%' }">
+        <div class="color-overlay">
+          <img src="assets/images/user.png" class="caller-img">
+          <h3 class="user-name">{{ this.remoteUsers[1] ? this.remoteUsers[1].getNickname() : 'Emma' }}</h3>
+          
+          <div class="end-call">
+              <ion-button fill="clear">
+                  <ion-icon slot="icon-only" name="md-call" color="light"></ion-icon>
+              </ion-button>
+          </div>
+        </div>
+      </div>
+
+      <div class="single-user three ion-text-center" [ngStyle]="{'background-image': group_data.avatar ?'url('+ userService.setAvatar( group_data.avatar ) +'), url(assets/images/user.png); height:33.33%' : 'url(assets/images/user.png); height:33.33%' }">
+        <div class="color-overlay">
+          <img src="assets/images/user.png" class="caller-img">
+          <h3 class="user-name">{{ this.remoteUsers[2] ? this.remoteUsers[2].getNickname() : 'Emma' }}</h3>
+          
+          <div class="end-call">
+              <ion-button fill="clear">
+                  <ion-icon slot="icon-only" name="md-call" color="light"></ion-icon>
+              </ion-button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!-- Four users on call -->
+<div *ngIf="remoteUsers && remoteUsers.length == 4" style="height:100%">
+  <div class="audio-row" style="display:flex">
+    <div class="single-user four ion-text-center" [ngStyle]="{'background-image': group_data.avatar ?'url('+ userService.setAvatar( group_data.avatar ) +'), url(assets/images/user.png)' : 'url(assets/images/user.png)' }">
+      <div class="color-overlay">
+        <img src="assets/images/user.png" class="caller-img">
+        <h3 class="user-name">Emma</h3>
+        <div class="end-call">
+            <ion-button fill="clear">
+                <ion-icon slot="icon-only" name="md-call" color="light"></ion-icon>
+            </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="single-user four ion-text-center" [ngStyle]="{'background-image': group_data.avatar ?'url('+ userService.setAvatar( group_data.avatar ) +'), url(assets/images/user.png)' : 'url(assets/images/user.png)' }">
+      <div class="color-overlay">
+        <img src="assets/images/user.png" class="caller-img">
+        <h3 class="user-name">Emma</h3>
+        
+        <div class="end-call">
+            <ion-button fill="clear">
+                <ion-icon slot="icon-only" name="md-call" color="light"></ion-icon>
+            </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="audio-row" style="display:flex">
+    <div class="single-user four ion-text-center" [ngStyle]="{'background-image': group_data.avatar ?'url('+ userService.setAvatar( group_data.avatar ) +'), url(assets/images/user.png)' : 'url(assets/images/user.png)' }">
+      <div class="color-overlay">
+        <img src="assets/images/user.png" class="caller-img">
+        <h3 class="user-name">Emma</h3>
+        
+        <div class="end-call">
+            <ion-button fill="clear">
+                <ion-icon slot="icon-only" name="md-call" color="light"></ion-icon>
+            </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="single-user four ion-text-center" [ngStyle]="{'background-image': group_data.avatar ?'url('+ userService.setAvatar( group_data.avatar ) +'), url(assets/images/user.png)' : 'url(assets/images/user.png)' }">
+      <div class="color-overlay">
+        <img src="assets/images/user.png" class="caller-img">
+        <h3 class="user-name">Emma</h3>
+        
+        <div class="end-call">
+            <ion-button fill="clear">
+                <ion-icon slot="icon-only" name="md-call" color="light"></ion-icon>
+            </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div id="layout" class="bounds">
+    <div *ngIf="localUser && localUser.getStreamManager()" #mainStream  class="OT_root OT_publisher OT_main custom-class own-video" id="localUser" (click)="toggleButtonsOrEnlargeStream($event)">
+      <stream-component #streamComponentLocal [user]="localUser"></stream-component>
+    </div>
+    <div *ngFor="let user of this.remoteUsers" class="OT_root OT_publisher OT_remote custom-class incoming-video" id="remoteUsers" (click)="toggleButtonsOrEnlargeStream($event)" style="top:0 !important; height:100% !important;">
+      <stream-component #streamComponentRemotes [user]="user" ></stream-component>
+    </div>
+  </div>
+  
+  <div id="menu-open" (click)="toggleMenu()" *ngIf="localUser &&  localUser.getStreamManager() && remoteUsers && remoteUsers.length > 1">
+      <ion-button fill="clear" 
+      >
+      <!-- (click)="showAttachment($event)" -->
+          <ion-icon slot="icon-only" name="md-menu" color="primary"></ion-icon>
+      </ion-button>
+  </div>
+
+  <div id="menu-opened" class="hide">
+      <div class="close-section">
+        <div id="menu-close" (click)="toggleMenu()">
+            <ion-button fill="clear">
+                <ion-icon slot="icon-only" name="md-close" color="primary"></ion-icon>
+            </ion-button>
+        </div>
+      </div>
+      <div class="menu">
+        <div class="first-row">
+          <div class="icon-container">
+            <ion-button fill="clear">
+                <ion-icon slot="icon-only" name="md-volume-high" color="primary"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" (click)="micStatusChanged()">
+                <ion-icon slot="icon-only" name="md-mic-off" color="primary"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+        <div class="row-text">
+          <div class="text-container">
+              <span>Speaker</span>
+              <span>Mute</span>
+          </div>
+        </div>
+        <!-- <div class="row-text">
+            <div class="text-container">
+                <span>Flip</span>
+                <span>Video</span>
+            </div>
+          </div> -->
+        <div class="third-row">
+            <div class="icon-container">
+                <ion-button fill="clear" (click)="exitSession()">
+                    <ion-icon slot="icon-only" name="md-call" color="light"></ion-icon>
+                </ion-button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</ion-content>

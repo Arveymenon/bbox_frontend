@@ -1,0 +1,36 @@
+<!-- <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-button routerLink="/home/tabs/tab1/groupchat/groupchatadmin">
+            <ion-icon class="back-button" slot="icon-only" name="md-arrow-back"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <ion-title routerLink="groupdetails">
+        Emma
+      </ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+
+
+  <ion-content id="video-room-content" [scrollY]="false" [scrollX]="false" *ngIf="group_data">
+    <div class="main">
+    
+      <div class="single-user ion-text-center" [ngStyle]="{'background-color': 'black' }">
+        <img [src]="'http://198.12.92.202/public/uploads/' + group_data.avatar" onError="this.src='assets/images/user.png';" class="caller-img">
+        <h3 class="user-name">{{ group_data.name }}</h3>
+        <h4 class="call-duration">Incoming Call</h4>
+        <div class="options">
+          <div class="end-call">
+              <ion-button fill="clear" (click)="dropUp()">
+                  <ion-icon slot="icon-only" name="md-call" color="light"></ion-icon>
+              </ion-button>
+          </div>
+          <div class="receive-call">
+              <ion-button fill="clear" (click)="pickUp()">
+                  <ion-icon slot="icon-only" name="md-call" color="light"></ion-icon>
+              </ion-button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </ion-content>

@@ -1,0 +1,59 @@
+// Header Styles
+ion-title{
+    text-align: left;
+}
+
+.back-button{
+    font-size:25px;
+}
+
+//Group Styles
+
+ion-label{
+    margin-bottom: 0;
+}
+
+.chat-item{
+    border-bottom: 1px solid #E2E2E2;
+}
+
+.unread{
+    border:none;
+}
+
+.right{
+    margin-left:-10px;
+}
+
+.group-name{
+    color: #4B4A5E;
+    font-weight: bold;
+}
+
+.group-icon{
+    border-radius: 50%;
+}
+
+.group-message{
+    color: #4B4A5E;
+    font-weight: 400;
+    margin-top:5px;
+}
+
+.message-time-container{
+    text-align: right;
+}
+
+.message-time{
+    color: #005DDD;
+    font-size: 14px;
+}
+
+.message-badge-container{
+    text-align: right;
+}
+
+.approve-button{
+    margin:2px 5px;
+    font-size: 16px;
+}
